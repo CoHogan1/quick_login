@@ -74,6 +74,7 @@ form>h1 {
     border: 2px solid lime;
 }
 span {
+    background-color: rgba(250,250,250, 0.5);
     min-width: 80px;
     margin: 5px;
 }
