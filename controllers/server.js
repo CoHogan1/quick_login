@@ -102,9 +102,11 @@ router.get('/index/:id/edit', (req, res)=>{
 })
 // edit 2 0f 2
 router.put('/index/:id', (req, res)=>{
-    //console.log(req.body)
     //console.log(req.params.id)
     //res.send("Checking to see if this works")  // working
+    //console.log(req.body, " before");
+    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+    //console.log(req.body, " after");
     Data.findByIdAndUpdate(
         req.params.id,
         req.body,

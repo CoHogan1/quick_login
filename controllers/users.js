@@ -27,7 +27,7 @@ router.post('/', (req, res)=>{
         }
         else{
             //console.log("got here")
-            res.redirect('/home')
+            res.redirect('/home/index')
         }
     })
 })

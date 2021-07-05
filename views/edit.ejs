@@ -8,7 +8,7 @@
         <%- include('./partials/nav.ejs') %>
     </nav>
 
-    <form method="POST" action="/home/index/<%=data.id%>?_method=PUT">
+    <form  method="POST" action="/home/index/<%=data.id%>?_method=PUT">
         <h1>Adjust-- <%=data.name%> </h1>
         <div class="this">
 
@@ -26,6 +26,5 @@
         </div>
         <input class="submit" type="submit" value="Update <%=data.name%>"/>
     </form>
-
 </body>
 </html>

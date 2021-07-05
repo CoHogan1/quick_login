@@ -5,7 +5,6 @@ const app = express()
 
 const session = require('express-session');
 const systemControllers = require('./controllers/server.js')
-const Attempt = require('./models/schema.js')
 const Client = require('./models/users.js')
 
 app.use(express.json())
@@ -35,14 +34,14 @@ db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good d
 
 app.use(session({
     secret: process.env.SECRET,
-    resave: false, // here may save after page refresh
+    resave: false,
     saveUninitialized: false
 }))
 
 
 // middleware to ensure user is logged in.
 const isAuthenticated = (req, res, next) => {
-    console.log('session auth')
+    //console.log('session auth')
     if (req.session.currentUser) {
         // console.log(req.session.currentUser)
         return next()
@@ -57,7 +56,7 @@ app.use('/home', isAuthenticated,  homeControllers)
 //app.use('/home', homeControllers) // make new user
 
 const usersControllers = require('./controllers/users')
-//app.use('/users', isAuthenticated, usersControllers) // use once user is set up
+//app.use('/users', isAuthenticated, usersControllers)
 app.use('/users', usersControllers) // make new user
 
 const sessionsControllers = require('./controllers/sessions')

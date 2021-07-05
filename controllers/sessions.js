@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 
 router.delete('/', (req, res) => {
     req.session.destroy(() => {
-        res.redirect('/home')
+        res.redirect('/home/index')
     })
 })
 
