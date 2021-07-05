@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include ('./partials/head.ejs') %>
+    </head>
+    <body class="showBody">
+        <nav>
+            <%- include('./partials/nav.ejs') %>
+        </nav>
+
+        <div class="showForm">
+
+
+
+        <h1> <%= practices.name%>        </h1>
+        <h3>Did it work for me? <u><%= practices.didItWork%></u></h3>
+        <h3>My Rating: <%= practices.myRating%> out of 5</h3>
+        <h3>My Results: <%= practices.results%></h3>
+        <h3>My Notes: <%= practices.notes%></h3>
+
+        <button type="button" class="showButton"
+        onclick='window.location.href="/home/index/<%=practices.id%>/edit"'>
+        Edit <%= practices.name%></button>
+    </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<nav class="navPartial">
+
+    <a href="/home" class="">Home</a>
+    <a href="/home/index" class="">View All Users</a>
+    <a href="/home/index/new">Add new user</a>
+
+    <% if (currentUser) { %>
+
+        <span>Current User:
+             <%=currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1)%></span>
+        <div>
+
+        <form class="remove" action="/sessions?_method=DELETE" method="POST">
+            <input class="end" type="submit" value="logout" ></input>
+        </form>
+
+        </div>
+
+    <% } else { %>
+
+        <a class="navUsers" href="/sessions/new">Log In</a>
+        <a class="navUsers" href="/users/new">Sign Up</a>
+
+    <% } %>
+    <div></div>
+</nav>
