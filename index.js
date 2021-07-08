@@ -65,11 +65,11 @@ app.use('/sessions', sessionsControllers)
 
 // HOMEPAGE Route
 app.get('/', (req, res) => {
-    res.render('home.ejs', {currentUser: req.session.currentUser})
+    res.render('index.ejs', {currentUser: req.session.currentUser})
 })
 
 app.get('/home', (req, res) => {
-    res.render('home.ejs', {currentUser: req.session.currentUser})
+    res.render('index.ejs', {currentUser: req.session.currentUser})
 })
 
 app.listen(PORT, (req, res)=>{
