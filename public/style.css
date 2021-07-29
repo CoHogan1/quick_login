@@ -49,6 +49,7 @@ a:hover {
 
 form {
     margin: auto;
+    text-align: center;
     margin-top: 40px;
     width: 400px;
     background-color: rgba(100,100,100, 0.7);
@@ -121,5 +122,25 @@ th {
 
 td{
     background-color: rgba(120,120,120, 0.8);
+
+}
+
+.show{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.show>p{
+    text-align: center;
+    min-width: 43%;
+    height: 25px;
+    line-height: 25px;
+    background-color: rgba(250,250,250, 0.6);
+}
+
+.showB {
+    margin-bottom: 15px;
 
 }

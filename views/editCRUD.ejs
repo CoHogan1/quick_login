@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <%- include ('./partials/head.ejs') %>
+</head>
+<body class="editBody">
+    <nav>
+        <%- include('./partials/navigationBar.ejs') %>
+    </nav>
+
+    <form  method="POST" action="/home/index/<%=data.id%>?_method=PUT">
+        <h1>Edit Pizza</h1>
+        <div class="this">
+
+        <span for="">Pizza:</span>
+        <input type="text" name="pizza" value="<%=data.pizza%>"> <br>
+
+        <span for="">Dough:</span>
+        <input type="text" name="dough" value="<%=data.dough%>"/><br>
+
+        <span for="">Sauce:</span>
+        <input type="text" name="sauce" value="<%=data.sauce%>"><br>
+
+        <span for="">Toppings:</span>
+        <input class="bcrypt" type="text" name="toppings" value="<%=data.toppings%>"><br>
+        </div>
+        <input class="submit" type="submit" value="Update <%=data.name%>"/>
+    </form>
+</body>
+</html>

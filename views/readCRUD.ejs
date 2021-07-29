@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include ('./partials/head.ejs') %>
+    </head>
+    <body class="showBody">
+
+    <nav>
+        <%- include('./partials/navigationBar.ejs') %>
+    </nav>
+
+    <form >
+        <h1>View Pizza</h1>
+        <div class="show">
+            <p>Pizza:   </p><p> <%= data.pizza%>     </p><br>
+            <p>Dough:   </p><p> <%= data.dough%>     </p><br>
+            <p>Sauce:   </p><p> <%= data.sauce%>     </p><br>
+            <p>Toppings:</p><p> <%= data.toppings%>  </p><br>
+        </div>
+
+        <button type="button" class="showB"
+        onclick='window.location.href="/home/index/<%=data.id%>/edit"'>
+        Edit </button>
+
+    </form>
+
+
+    </body>
+</html>

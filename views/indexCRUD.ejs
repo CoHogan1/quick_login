@@ -2,36 +2,44 @@
 <html lang="en" dir="ltr">
     <head><%- include ('./partials/head.ejs') %></head>
     <body>
-    <nav><%- include('./partials/nav.ejs') %></nav>
+    <nav><%- include('./partials/navigationBar.ejs') %></nav>
 
         <table class="indexTable">
             <tr>
                 <th>           </th>
                 <th>           </th>
+                <th>Pizza: t/f </th>
                 <th>           </th>
-                <th>Name:      </th>
-                <th>Username:  </th>
-                <th>Email:     </th>
-                <th>Password   </th>
+                <th>Dough:     </th>
+                <th>Sauce:     </th>
+                <th>Toppings:  </th>
             </tr>
 
             <tr>
             <%for (let i = 0; i < data.length; i++) { %>
                 <td><button type="button" name="button"
                     onclick="window.location.href='/home/index/<%=data[i].id%>/edit'"
-                    >Edit</button></td>
+                    >Edit</button>
+                </td>
 
-                <td id="name"><a href="/home/index/<%=data[i].id%>/show"><%=data[i].name%></a></td>
+                <td><button type="button" name="button"
+                    onclick="window.location.href='/home/index/<%=data[i].id%>'"
+                    >View</button>
+                </td>
+
+
+
+                <td id="name"><a href="/home/index/<%=data[i].id%>/show"><%=data[i].pizza%></a></td>
 
                 <td>
                     <form class="remove" action="/home/index/<%=data[i].id%>?_method=DELETE" method="POST">
                         <button id="delete">Remove</button>
                     </form>
                 </td>
-                <td><%=data[i].name%></td>
-                <td><%=data[i].username%></td>
-                <td><%=data[i].email%></td>
-                <td class="password"><%=data[i].password%></td>
+
+                <td><%=data[i].dough%></td>
+                <td><%=data[i].sauce%></td>
+                <td class="password"><%=data[i].toppings%></td>
             </tr>
             <%}%>
         </table>

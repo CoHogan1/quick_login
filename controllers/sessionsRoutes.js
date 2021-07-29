@@ -1,17 +1,20 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
-const User = require('../models/users')
+const User = require('../models/usersSchema')
 
 // USER NEW ROUTE
 router.get('/new', (req, res) => {
-    res.render('sessions/new.ejs', { currentUser: req.session.currentUser})
+    res.render('sessions/createSession.ejs', { currentUser: req.session.currentUser})
 })
 
 // USER LOGIN ROUTE (CREATE SESSION ROUTE)
 router.post('/', (req, res) => {
+    // verify that the user is in the database.
+    // use req.body object to query the db.
+    // were only using req.body.email because it is required....
     User.findOne({ email: req.body.email}, (err, foundUser) => {
-        console.log(foundUser + " this is the found user...");
+        //console.log(foundUser + " this is the found user...");
         if (err) {
                 res.send(err)
         }

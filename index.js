@@ -1,22 +1,24 @@
 const express = require('express')
-require('dotenv').config()
-const PORT = process.env.PORT || 3003
+const mongoose = require('mongoose')
+const session = require('express-session')
+const methodOverride = require('method-override')
 const app = express()
 
-const session = require('express-session');
-const systemControllers = require('./controllers/server.js')
-const Client = require('./models/users.js')
+const PORT = process.env.PORT || 3003
+require('dotenv').config()
+
+
+const systemControllers = require('./controllers/fullCRUD.js')
+const Client = require('./models/usersSchema.js')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
 
-const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
-const mongoose = require('mongoose')
-const information = require('./models/dbInfo.js')
-const mongoURI = process.env.MONGODBURI
+
+const mongoURI = 'mongodb://127.0.0.1:27017/' + "crudUsers"//process.env.MONGODBURI
 const db = mongoose.connection
 
 mongoose.connect(mongoURI , { // start connection to db
@@ -31,6 +33,9 @@ mongoose.connect(mongoURI , { // start connection to db
 db.on('error', (err)=> console.log(err.message + ' Mongo is not running!!!'))
 db.on('connected', ()=> console.log('Mongo connected: ' + mongoURI))
 db.on('disconnected', ()=> console.log('Mongo is now Disconnected, Have a good day!'))
+
+
+
 
 app.use(session({
     secret: process.env.SECRET,
@@ -51,26 +56,36 @@ const isAuthenticated = (req, res, next) => {
     }
 }
 
-const homeControllers = require('./controllers/server')
+const homeControllers = require('./controllers/fullCRUD')
 app.use('/home', isAuthenticated,  homeControllers)
 //app.use('/home', homeControllers) // make new user
 
-const usersControllers = require('./controllers/users')
+const usersControllers = require('./controllers/usersRoutes')
 //app.use('/users', isAuthenticated, usersControllers)
 app.use('/users', usersControllers) // make new user
 
-const sessionsControllers = require('./controllers/sessions')
+const sessionsControllers = require('./controllers/sessionsRoutes')
 app.use('/sessions', sessionsControllers)
+
+
+
 
 
 // HOMEPAGE Route
 app.get('/', (req, res) => {
-    res.render('index.ejs', {currentUser: req.session.currentUser})
+    console.log("hit this route")
+    // here is the issue to fix
+    //res.render('index.ejs', {currentUser: req.session.currentUser})
+    res.redirect('/sessions/new')
 })
 
-app.get('/home', (req, res) => {
-    res.render('index.ejs', {currentUser: req.session.currentUser})
-})
+
+
+// app.get('/home', (req, res) => {
+//     res.render('index.ejs', {currentUser: req.session.currentUser})
+// })
+
+
 
 app.listen(PORT, (req, res)=>{
     console.log('Music App server listening......')

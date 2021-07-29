@@ -1,12 +1,12 @@
 <nav class="navPartial">
 
-    <a href="/home/index" class="">View All Users</a>
-    <a href="/home/index/new">Add new user</a>
+    <a href="/home/index" class="">View All Database Data</a>
+    <a href="/home/index/new">Add To the Database</a>
 
     <% if (currentUser) { %>
 
-        <span>Current User:
-             <%=currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1)%></span>
+        <div>Current User:
+             <%=currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1)%></div>
         <div>
 
         <form class="remove" action="/sessions?_method=DELETE" method="POST">
