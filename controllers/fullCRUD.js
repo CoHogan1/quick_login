@@ -3,10 +3,6 @@ const express = require('express')
 const router = express.Router()
 const Data = require('../models/CRUDschema.js')
 
-const bcrypt = require('bcrypt')
-
-
-
 // create route ------- C in crud
 // create a new object in database
 router.post('/index', (req, res)=>{
@@ -22,15 +18,14 @@ router.post('/index', (req, res)=>{
     })
 })
 
-
-// this route displays the add new data to database page.
+// this route displays the add data form and sends the data to the create route.
 router.get('/index/new', (req, res)=>{
     // send the create Data ejs page, and the currentUser for the session.
     res.render('createCRUD.ejs', {currentUser: req.session.currentUser})
 })
 
 
-
+// this is the R in crud
 // this route will query the database and find information.
 router.get('/index/:id', (req, res)=>{
     // query the collection for a specific set of data.
@@ -45,9 +40,10 @@ router.get('/index/:id', (req, res)=>{
     })
 })
 
-
+// also technically R in crud.
 // this route will diaplay everything in the database collection.
 router.get('/index', (req, res)=>{
+    console.log("find everything in db");
     // find everything in the collection
     Data.find({}, (err, allData, next)=>{
         //console.log(allData) // to verify data for debugging
@@ -61,8 +57,11 @@ router.get('/index', (req, res)=>{
     })
 })
 
+
+// D in crud
 // delete route ----------------------------------------------------------------
 router.delete('/index/:id', (req, res)=>{
+    console.log("delete route");
     // this will use the req.params id to find item in database to delete it
     Data.findByIdAndRemove(req.params.id, (err, data)=>{
         if (err) {
@@ -74,8 +73,12 @@ router.delete('/index/:id', (req, res)=>{
     })
 })
 
+
+
+// E in crud
 // edit route----1 0f 2---------------------------------------------------------
 router.get('/index/:id/edit', (req, res)=>{
+    console.log("edit route number 1");
     // query the database for specific object.
     Data.findById(req.params.id, (err, pizzaByiId)=>{
         if (err) {
@@ -89,19 +92,21 @@ router.get('/index/:id/edit', (req, res)=>{
         }
     })
 })
+
+// E in crud
 // edit route ---- 2 0f 2-------------------------------------------------------
 router.put('/index/:id', (req, res)=>{
     // take req.body info, and update the database with this info.
+    console.log("edit route number 2");
     Data.findByIdAndUpdate(
         req.params.id, // find with this id.
         req.body, // replace with this info.
         {new:true},// delete old info, in stead of duplicating it.
         (err, updates)=>{
-            console.log(updates, " updates")
+            console.log(updates, " updates----here")
             // if successful redirect to this route.
             res.redirect('/home/index')
     })
 })
-
 
 module.exports = router

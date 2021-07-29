@@ -60,6 +60,7 @@ const homeControllers = require('./controllers/fullCRUD')
 app.use('/home', isAuthenticated,  homeControllers)
 //app.use('/home', homeControllers) // make new user
 
+
 const usersControllers = require('./controllers/usersRoutes')
 //app.use('/users', isAuthenticated, usersControllers)
 app.use('/users', usersControllers) // make new user
